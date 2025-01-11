@@ -1,6 +1,13 @@
 # Virtual Environment
 venv_uidgen/
-
+doc/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
 
 # Python
 __pycache__/
