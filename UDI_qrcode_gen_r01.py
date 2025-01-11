@@ -1,11 +1,10 @@
-from PyQt5 import QtWidgets, uic, QtCore
+from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import *
 # for Add logo
 from PIL import Image
 from PyQt5.QtWidgets import QFileDialog
 
 import os
-import sys
 
 ## pip install qrcode ##
 import qrcode
@@ -15,16 +14,8 @@ from pystrich.datamatrix import DataMatrixEncoder
 
 ####################################################
 app = QtWidgets.QApplication([])
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ui_file = os.path.join(BASE_DIR, 'UDI_qrcode_gen_r01.ui')
-
-# 운영체제 확인 및 경로 설정
-if os.name == 'nt':  # Windows
-    ui_file = ui_file.replace('/', '\\')
-else:  # Linux/Unix
-    ui_file = ui_file.replace('\\', '/')
-
-ui = uic.loadUi(ui_file)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+ui = uic.loadUi(BASE_DIR + r'\UDI_qrcode_gen_r01.ui')
 ui.setWindowTitle("UDI Code Generator - made by hsshin")
 ####################################################
 
@@ -348,10 +339,4 @@ ui.checkBox_logo_enable.stateChanged.connect(input_logo)
 
 
 ui.show()
-
-# CI 환경에서 실행 중인지 확인
-if os.environ.get('CI'):
-    # 3초 후 앱 종료
-    QtCore.QTimer.singleShot(3000, app.quit)
-
-sys.exit(app.exec_())
+app.exec()
